@@ -1,0 +1,44 @@
+body
+{
+}
+
+.blog-container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.blog-post {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+    .blog-post h2 {
+        color: #444;
+        margin-bottom: 5px;
+    }
+
+    .blog-post h4 {
+        color: #777;
+        margin-bottom: 10px;
+    }
+
+    .blog-post a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .blog-post a:hover {
+            text-decoration: underline;
+        }
+
+/* Дополнительные стили для blogpost.html (если нужно) */
+.blogpost-content {
+    margin-top: 20px;
+}
+
+    .blogpost-content p {
+        line-height: 1.6;
+    }

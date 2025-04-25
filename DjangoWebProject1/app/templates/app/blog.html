@@ -1,0 +1,27 @@
+{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+
+
+<div class="blog-container">
+    <h1 class="blog-title">{{ title }}</h1>
+    <br />
+
+    {% if user.is_superuser %}
+        <a href="{% url 'new_post' %}" class="post-link">Добавить новый пост</a>
+    {% endif %}
+
+    {% for post in posts %}
+        <hr />
+
+        <div class="one-card">
+            <h2 class="post-title"> {{post.title}} </h2>
+            <h4 class="post-date"> {{post.posted}} </h4>
+            <span class="post-author">Автор: {{post.author}}</span> 
+            <p> {{post.description}} </p>
+            <p><a href="{% url 'blogpost' parametr=post.id %}" class="post-link"> Читать далее </a> </p>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

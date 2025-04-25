@@ -1,0 +1,11 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load staticfiles %}
+<h2>{{ title }}</h2>
+
+<a href ="https://www.allrecipes.com/" target="_blank"> <img src="{% static 'app/content/allrecipes.png' %}" alt="Logo 1"/></a>
+<a href ="https://www.seriouseats.com/" target="_blank"> <img src="{% static 'app/content/seriouseats.png' %}" alt="Logo 2"/></a>
+<a href ="https://www.foodnetwork.com/" target="_blank"> <img src="{% static 'app/content/foodnetwork.png' %}" alt="Logo 3"/></a>
+
+{% endblock %}

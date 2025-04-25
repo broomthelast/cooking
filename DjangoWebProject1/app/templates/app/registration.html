@@ -1,0 +1,112 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+<title>Регистрация</title>
+<h1>Регистрация</h1>
+<script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+<script>
+    $(document).ready(function () {
+
+        $('button').mouseover(function () {
+            $(this).css('color', 'red');
+        }).mouseout(function () {
+            $(this).css('color', 'black');
+        });
+
+
+        $('form').on('focus', 'input, textarea', function () {
+            $(this).css('background-color', 'lightblue');
+        }).on('blur', 'input, textarea', function () {
+            $(this).css('background-color', 'white');
+        });
+</script>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}</li>
+        {% endfor %}
+</ul>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <p>
+        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+        {{ form.username }}
+        <small id="username-hint" class="form-text text-muted" style="display: none;">
+            Имя пользователя должно содержать от 3 до 150 символов.
+        </small>
+        {% if form.username.errors %}
+        <div class="alert alert-danger">{{ form.username.errors|striptags }}</div>
+        {% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+        {{ form.email }}
+        <small id="email-hint" class="form-text text-muted" style="display: none;">
+            Используйте @gmail.com, @mail.ru или @yandex.ru.
+        </small>
+        {% if form.email.errors %}
+        <div class="alert alert-danger">{{ form.email.errors|striptags }}</div>
+        {% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+        {{ form.password }}
+        <small id="password-hint" class="form-text text-muted" style="display: none;">
+            Пароль должен содержать не менее 8 символов, включать буквы верхнего и нижнего регистра, цифры и специальные символы.
+        </small>
+        {% if form.password.errors %}
+        <div class="alert alert-danger">{{ form.password.errors|striptags }}</div>
+        {% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.password_confirmation.id_for_label }}">{{ form.password_confirmation.label }}</label>
+        {{ form.password_confirmation }}
+        {% if form.password_confirmation.errors %}
+        <div class="alert alert-danger">{{ form.password_confirmation.errors|striptags }}</div>
+        {% endif %}
+    </p>
+
+    <button type="submit">Зарегистрироваться</button>
+
+    <script>
+        const usernameField = document.getElementById("{{ form.username.id_for_label }}");
+        const passwordField = document.getElementById("{{ form.password.id_for_label }}");
+        const usernameHint = document.getElementById("username-hint");
+        const passwordHint = document.getElementById("password-hint");
+
+        usernameField.addEventListener("focus", () => {
+            usernameHint.style.display = "block";
+        });
+        usernameField.addEventListener("blur", () => {
+            usernameHint.style.display = "none";
+        });
+
+        passwordField.addEventListener("focus", () => {
+            passwordHint.style.display = "block";
+        });
+        passwordField.addEventListener("blur", () => {
+            passwordHint.style.display = "none";
+        });
+        const emailField = document.getElementById("{{ form.email.id_for_label }}");
+        const emailHint = document.getElementById("email-hint");
+
+        emailField.addEventListener("focus", () => {
+        emailHint.style.display = "block";
+        });
+        emailField.addEventListener("blur", () => {
+        emailHint.style.display = "none";
+  });
+    </script>
+</form>
+
+<p>Уже зарегистрированы? <a href="{% url 'login' %}">Войти</a></p>
+
+{% endblock %}

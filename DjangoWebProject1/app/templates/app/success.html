@@ -1,0 +1,25 @@
+{% extends "app/pool.html" %}
+
+{% block content %}
+
+
+
+    {% if pool_data %}
+    <h2>{{ title }}</h2>
+    <p>Вы предоставили следующую информацию:</p>
+    <ul>
+        <li><strong>Имя:</strong> {{ pool_data.name }}</li>
+        <li><strong>Возраст:</strong> {{ pool_data.age }}</li>
+        <li><strong>Пол:</strong> {{ pool_data.gender }}</li>
+        <li><strong>Частота использования:</strong> {{ pool_data.frequency }}</li>
+        <li><strong>Что понравилось больше всего:</strong> {{ pool_data.liked_features }}</li>
+        <li><strong>Что бы вы хотели улучшить:</strong> {{ pool_data.improvements }}</li>
+        <li><strong>Степень удовлетворенности:</strong> {{ pool_data.satisfaction }}/5</li>
+        <li><strong>Как вы услышали о сайте:</strong> {{ pool_data.how_did_you_hear }}</li>
+        <li><strong>Рекомендуете ли друзьям:</strong> {{ pool_data.recommend }}</li>
+    </ul>
+    {% else %}
+    <h2>{{ title }}</h2>
+    <p>Нет данных для отображения.</p>
+    {% endif %}
+{% endblock %}

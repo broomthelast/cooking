@@ -1,0 +1,16 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2>Видео</h2>
+
+{% for video in videos %}
+<h3>{{ video.name1 }}</h3>
+<h3>{{ video.name2 }}</h3>
+<VIDEO width="640" height="360" controls>
+    <source src="{{ video.url1 }}" type="video/mp4">
+    <source src="{{ video.url2 }}" type="video/mp4">
+</VIDEO>
+<br>
+<br>
+{% endfor %}
+{% endblock %}

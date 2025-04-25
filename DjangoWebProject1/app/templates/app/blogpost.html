@@ -1,0 +1,39 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+<meta charset="utf-8" />
+<div class="blogpost-container">
+<h2 class="blogpost-title"> {{post1.title}} </h2>
+<img src="{{post1.image.url}}" alt="{{ blog.title }}" style="max-width: 300px;">
+<p class="blogpost-date"> Автор: {{ post1.author.username }} </p>
+<p class="blogpost-content"> {{post1.content|linebreaksbr}} </p>
+{% if user.is_authenticated %}
+
+<h4>Добавить комментарий</h4>
+<form method="POST" class="comment-field">
+    {% csrf_token %}
+    <div>
+        {{form.as_p}}
+        <button type="submit" class="commentbtn"> Отправить комментарий </button>
+    </div>
+
+</form>
+
+{% else %}
+
+<h3> Для добавления своего комментария, пожалуйста, авторизуйтесь </h3>
+
+{% endif %}
+
+{% for comment in comments %}
+<hr />
+<div class="comment-list">
+<h7 class="comment-date"> {{comment.date}} </h7>
+<h5 class="comment-author"> {{comment.author}} </h5>
+<p class="comment-content"> {{comment.text|linebreaksbr}} </p>
+    </div>
+{% endfor %}
+</p>
+
+    </div>
+{% endblock %}

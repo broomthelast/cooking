@@ -1,0 +1,34 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+<script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+<script>
+$(document).ready(function() {
+    
+    $('button').mouseover(function() {
+        $(this).css('color', 'red');
+    }).mouseout(function() {
+        $(this).css('color', 'black'); 
+    });
+
+    
+    $('form').on('focus', 'input, textarea', function() {
+        $(this).css('background-color', 'lightblue');
+    }).on('blur', 'input, textarea', function() {
+        $(this).css('background-color', 'white');
+    });
+});
+</script>
+<h2>{{ title }}</h2>
+{% if form %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button id="button" type="submit">Отправить</button>
+        </form>
+    {% else %}
+        <p>Нет формы для отображения.</p>
+    {% endif %}
+
+{% endblock %}
