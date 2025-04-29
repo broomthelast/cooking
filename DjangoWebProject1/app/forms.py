@@ -18,7 +18,7 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                widget=forms.TextInput({
                                    'class': 'form-control',
                                    'placeholder': 'Имя пользователя'}))
-    password = forms.CharField(label=("Пароль"),
+    password = forms.CharField(max_length=254,
                                widget=forms.PasswordInput({
                                    'class': 'form-control',
                                    'placeholder':'Пароль'}))
